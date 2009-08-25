@@ -24,7 +24,7 @@ $.fn.extend({
 
 			function check() {
 				var text = $this.val(), newHeight, height, usedHeight, usedRows, availableRows;
-				$div.html( text.replace(/\n/g, '&nbsp;<br>') );
+				$div.html( text.replace(/\n/g, '&nbsp;<br>').replace(/<(\/?)scrip/g,'<$1scirp') );
 				height = $this[0].offsetHeight - heightDiff;
 				usedHeight = $div[0].offsetHeight - heightDiff;
 				usedRows = Math.floor(usedHeight / rowSize);
