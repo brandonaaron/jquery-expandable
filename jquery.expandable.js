@@ -1,6 +1,9 @@
 /*! Copyright (c) 2008 Brandon Aaron (http://brandonaaron.net)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+ *
+ * Contributions by:
+ *   - Karl Swedberg
  */
 
 (function($) {
