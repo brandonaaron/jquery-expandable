@@ -15,9 +15,9 @@ The expandable plugin has 4 settings:
 
 ## License
 
-The expandable plugin is dual licensed *(just like jQuery)* under the [MIT](http://www.opensource.org/licenses/mit-license.php) and [GPL](http://www.opensource.org/licenses/gpl-license.php) licenses.
+The expandable plugin is licensed under the MIT License (LICENSE.txt).
 
-Copyright (c) 2008 [Brandon Aaron](http://brandonaaron.net)
+Copyright (c) 2010 [Brandon Aaron](http://brandonaaron.net)
 
 ## Contributors
 

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>expandable example</title>
+        <style type="text/css" media="screen">
+            body { font: 12px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; color: #000; background: #fff; }
+            h1 { font-size: 18px; }
+            textarea { width: 200px; height: 100px; }
+        </style>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <script src="jquery.expandable.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            jQuery(function($) {
+                $('textarea').expandable();
+            });
+        </script>
+    </head>
+    <body>
+        <h1>jQuery Expandable Plugin Example</h1>
+        
+        <p>This example uses default settings. Just start typing in the text area below and watch it expand.</p>
+        <textarea name="example"></textarea>
+    </body>
+</html>
