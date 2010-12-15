@@ -49,6 +49,7 @@ $.fn.extend({
                 // encode any html passed in and replace new lines with a <br>
                 // the &nbsp; is to try and normalize browser behavior
                 $mirror.html( encodeHTML(text).replace(/\n/g, '&nbsp;<br>') );
+                $mirror.width($this.width());
                 
                 height = $this[0].offsetHeight - heightDiff;
                 usedHeight = $mirror[0].offsetHeight - heightDiff;
