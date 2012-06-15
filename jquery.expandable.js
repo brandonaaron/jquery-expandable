@@ -18,7 +18,7 @@ $.fn.extend({
             by: 2,
             init: false 
         }, givenOptions);
-        
+
         return this.filter('textarea').each(function() {
             var $this = $(this).css({ display: 'block', overflow: 'hidden' }),
                 minHeight = $this.height(),
@@ -29,12 +29,12 @@ $.fn.extend({
                 // white-space rules from: http://petesbloggerama.blogspot.com/2007/02/firefox-ie-word-wrap-word-break-tables.html
                 $mirror = $('<div style="position:absolute;top:-999px;left:-999px;border-color:#000;border-style:solid;overflow-x:hidden;visibility:hidden;z-index:0;white-space: pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;" />').appendTo('body'),
                 interval;
-            
+
             // copy styles from textarea to mirror to mirror the textarea as best possible
             $.each('borderTopWidth borderRightWidth borderBottomWidth borderLeftWidth paddingTop paddingRight paddingBottom paddingLeft fontSize fontFamily fontWeight fontStyle fontStretch fontVariant wordSpacing lineHeight width'.split(' '), function(i,prop) {
                 $mirror.css(prop, $this.css(prop));
             });
-            
+
             // setup events
             $this
                 .bind('keypress', function(event) { if ( event.keyCode == '13' ) check(); })
@@ -49,12 +49,12 @@ $.fn.extend({
                 // encode any html passed in and replace new lines with a <br>
                 // the &nbsp; is to try and normalize browser behavior
                 $mirror.html( encodeHTML(text).replace(/\n/g, '&nbsp;<br>') );
-                
+
                 height = $this[0].offsetHeight - heightDiff;
                 usedHeight = $mirror[0].offsetHeight - heightDiff;
                 usedRows = Math.floor(usedHeight / rowSize);
                 availableRows = Math.floor((height / rowSize) - usedRows);
-                
+
                 // adjust height if needed by either growing or shrinking the text area to within the specified bounds
                 if ( availableRows <= options.within ) {
                     newHeight = rowSize * (usedRows + Math.max(availableRows, 0) + options.by);
@@ -68,7 +68,7 @@ $.fn.extend({
         }).end();
     }
 });
-    
+
 function encodeHTML(text) {
     var characters = {
         '<' : '&lt;',
