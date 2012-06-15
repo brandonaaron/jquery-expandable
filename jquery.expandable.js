@@ -16,7 +16,8 @@ $.fn.extend({
             interval: 750,
             within: 1,
             by: 2,
-            init: false 
+            maxRows: 20,
+            init: false
         }, givenOptions);
 
         return this.filter('textarea').each(function() {
@@ -57,7 +58,11 @@ $.fn.extend({
 
                 // adjust height if needed by either growing or shrinking the text area to within the specified bounds
                 if ( availableRows <= options.within ) {
-                    newHeight = rowSize * (usedRows + Math.max(availableRows, 0) + options.by);
+                    var numRows = usedRows + Math.max(availableRows, 0) + options.by;
+                    if( numRows > options.maxRows ) {
+                      numRows = options.maxRows;
+                    }
+                    newHeight = rowSize * numRows;
                     $this.stop().animate({ height: newHeight }, options.duration);
                 } else if ( availableRows > options.by + options.within ) {
                     newHeight = Math.max( height - (rowSize * (availableRows - (options.by + options.within))), minHeight );
