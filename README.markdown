@@ -23,5 +23,5 @@ Copyright (c) 2013 [Brandon Aaron](http://brandonaaron.net)
 
 ## Contributors
 
-Karl Swedberg
-Pistos
+* Karl Swedberg
+* Pistos
