@@ -8,16 +8,28 @@
             h1 { font-size: 18px; }
             textarea { width: 200px; height: 100px; }
         </style>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+        <script>
+            (function(){
+                    var verMatch = /v=([\w\.]+)/.exec( location.search ),
+                    version = verMatch && verMatch[1], src;
+                    if ( version ) {
+                            src = 'code.jquery.com/jquery-' + version;
+                    } else {
+                            src = 'code.jquery.com/jquery-git';
+                    }
+                    document.write( '<script src="http://' + src + '.js"><\/script>' );
+            })();
+        </script>
         <script src="jquery.expandable.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" charset="utf-8">
             jQuery(function($) {
+                $('#version').html('using jQuery ' + $.fn.jquery);
                 $('textarea').expandable();
             });
         </script>
     </head>
     <body>
-        <h1>jQuery Expandable Plugin Example</h1>
+        <h1>jQuery Expandable Plugin Example (<span id="version"></span>)</h1>
         
         <p>This example uses default settings. Just start typing in the text area below and watch it expand.</p>
         <textarea name="example"></textarea>
