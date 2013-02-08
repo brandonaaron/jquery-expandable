@@ -61,7 +61,7 @@ $.fn.extend({
                 usedRows = Math.floor(usedHeight / rowSize);
                 availableRows = Math.floor((height / rowSize) - usedRows);
 
-                if ( usedHeight >= maxHeight ) {
+                if ( maxHeight && usedHeight >= maxHeight ) {
                     $this.css({ display: 'auto', overflow: 'auto' });
                     return;
                 }
