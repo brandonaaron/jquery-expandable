@@ -12,7 +12,7 @@ The expandable plugin has 5 settings:
 * `interval` - The interval at which it checks the textarea. Default is 750.
 * `within` - The number of rows left before expanding. Default is 1.
 * `by` - The number of rows to expand by. Default is 2.
-* `maxRows` - The maximum number of rows the textarea can be expanded to. Default is 20.
+* `maxRows` - The maximum number of rows the textarea can be expanded to. Default is false which will allow the textarea to keep expanding.
 
 
 ## License

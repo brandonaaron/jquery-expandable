@@ -16,7 +16,7 @@ $.fn.extend({
             interval: 750,
             within: 1,
             by: 2,
-            maxRows: 20,
+            maxRows: false,
             init: false
         }, givenOptions);
 
@@ -29,7 +29,12 @@ $.fn.extend({
                 // it isn't perfect but is pretty close
                 // white-space rules from: http://petesbloggerama.blogspot.com/2007/02/firefox-ie-word-wrap-word-break-tables.html
                 $mirror = $('<div style="position:absolute;top:-999px;left:-999px;border-color:#000;border-style:solid;overflow-x:hidden;visibility:hidden;z-index:0;white-space: pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;" />').appendTo('body'),
+                maxHeight = false,
                 interval;
+
+            if ( options.maxRows ) {
+                maxHeight = options.maxRows * rowSize;
+            }
 
             // copy styles from textarea to mirror to mirror the textarea as best possible
             $.each('borderTopWidth borderRightWidth borderBottomWidth borderLeftWidth paddingTop paddingRight paddingBottom paddingLeft fontSize fontFamily fontWeight fontStyle fontStretch fontVariant wordSpacing lineHeight width'.split(' '), function(i,prop) {
@@ -56,13 +61,17 @@ $.fn.extend({
                 usedRows = Math.floor(usedHeight / rowSize);
                 availableRows = Math.floor((height / rowSize) - usedRows);
 
+                if ( usedHeight >= maxHeight ) {
+                    $this.css({ display: 'auto', overflow: 'auto' });
+                    return;
+                }
+
                 // adjust height if needed by either growing or shrinking the text area to within the specified bounds
                 if ( availableRows <= options.within ) {
-                    var numRows = usedRows + Math.max(availableRows, 0) + options.by;
-                    if( numRows > options.maxRows ) {
-                      numRows = options.maxRows;
+                    newHeight = rowSize * (usedRows + Math.max(availableRows, 0) + options.by);
+                    if ( maxHeight ) {
+                        newHeight = Math.min(newHeight, maxHeight);
                     }
-                    newHeight = rowSize * numRows;
                     $this.stop().animate({ height: newHeight }, options.duration);
                 } else if ( availableRows > options.by + options.within ) {
                     newHeight = Math.max( height - (rowSize * (availableRows - (options.by + options.within))), minHeight );
