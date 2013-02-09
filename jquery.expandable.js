@@ -1,7 +1,7 @@
 /*! Copyright (c) 2013 Brandon Aaron (http://brandonaaron.net)
  * Licensed under the MIT License (LICENSE.txt).
  *
- * Version 1.1.0
+ * Version 1.1.1
  *
  * Contributions by:
  *   - Karl Swedberg
