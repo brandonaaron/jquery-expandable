@@ -45,7 +45,7 @@
                     maxHeight = options.maxRows * rowSize;
                 }
 
-                // copy styles from textarea to mirror to mirror the textarea as best possible
+                // copy styles from textarea to mirror the textarea as best possible
                 $.each('borderTopWidth borderRightWidth borderBottomWidth borderLeftWidth paddingTop paddingRight paddingBottom paddingLeft fontSize fontFamily fontWeight fontStyle fontStretch fontVariant wordSpacing lineHeight width'.split(' '), function(i,prop) {
                     $mirror.css(prop, $this.css(prop));
                 });
@@ -59,6 +59,12 @@
                     });
 
                 function check() {
+                    //The size of the textarea may have changed because it's resizeable (due to jQuery, 
+                    //or allowable by the browser).  Update the mirror size in this case.
+                    $.each('borderTopWidth borderRightWidth borderBottomWidth borderLeftWidth width'.split(' '), function(i,prop) {
+                        $mirror.css(prop, $this.css(prop));
+                    });
+
                     var text = $this.val(), newHeight, height, usedHeight, usedRows, availableRows;
                     // copy textarea value to the $mirror
                     // encode any html passed in and replace new lines with a <br>
