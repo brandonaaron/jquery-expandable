@@ -46,12 +46,16 @@
                 }
 
                 // copy styles from textarea to mirror to mirror the textarea as best possible
-                $.each('borderTopWidth borderRightWidth borderBottomWidth borderLeftWidth paddingTop paddingRight paddingBottom paddingLeft fontSize fontFamily fontWeight fontStyle fontStretch fontVariant wordSpacing lineHeight width'.split(' '), function(i,prop) {
-                    $mirror.css(prop, $this.css(prop));
-                });
+                mirror($this, $mirror);
 
                 // setup events
                 $this
+                    .bind('mouseup', function(event) {
+                        // check if width has changed
+                        if ($this.width() !== $mirror.width()) {
+                            mirror($this, $mirror);
+                        }
+                    })
                     .bind('keypress', function(event) { if ( event.keyCode == '13' ) check(); })
                     .bind('focus blur', function(event) {
                         if ( event.type == 'blur' ) clearInterval( interval );
@@ -103,6 +107,12 @@
         };
         return (text + '').replace(/[<>&"'\/]/g, function(c) {
             return characters[c];
+        });
+    }
+
+    function mirror(org, mir) {
+        $.each('borderTopWidth borderRightWidth borderBottomWidth borderLeftWidth paddingTop paddingRight paddingBottom paddingLeft fontSize fontFamily fontWeight fontStyle fontStretch fontVariant wordSpacing lineHeight width'.split(' '), function(i,prop) {
+            mir.css(prop, org.css(prop));
         });
     }
 
