@@ -1,7 +1,7 @@
 /*! Copyright (c) 2013 Brandon Aaron (http://brandonaaron.net)
  * Licensed under the MIT License (LICENSE.txt).
  *
- * Version 1.1.3
+ * Version 1.1.4
  *
  * Contributions by:
  *   - Karl Swedberg
@@ -30,8 +30,14 @@
             }, givenOptions);
 
             return this.filter('textarea').each(function() {
-                var $this = $(this).css({ display: 'block', overflow: 'hidden' }),
-                    minHeight = $this.height(),
+                var $this = $(this);
+
+                if ($this.data('expandable') === true) { return; } // already setup this textarea
+
+                // Set some initial style requirements
+                $this.css({ display: 'block', overflow: 'hidden' });
+
+                var minHeight = $this.height(),
                     heightDiff = this.offsetHeight - minHeight,
                     rowSize = ( parseInt($this.css('lineHeight'), 10) || parseInt($this.css('fontSize'), 10) ),
                     // $mirror is used for determining the height of the text within the textarea
@@ -48,8 +54,15 @@
                 // copy styles from textarea to mirror to mirror the textarea as best possible
                 mirror($this, $mirror);
 
-                // setup events
                 $this
+                // set data so we know we've already setup on this
+                    .data('expandable', true)
+                // setup events
+                    // custom event to force a recheck programatically
+                    // use by calling $('textarea').trigger('update');
+                    .bind('update.expandable', function(event) {
+                        check();
+                    })
                     .bind('mouseup', function(event) {
                         // check if width has changed
                         if ($this.width() !== $mirror.width()) {

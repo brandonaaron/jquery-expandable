@@ -15,6 +15,15 @@ The expandable plugin has 5 settings:
 * `maxRows` - The maximum number of rows the textarea can be expanded to. Default is false which will allow the textarea to keep expanding.
 
 
+## Dynamic Updating
+
+If you need, you can trigger an update to the textarea by doing the following:
+
+    $('textarea').trigger('update');
+
+This is useful if you are injecting content into the textarea via JavaScript.
+
+
 ## License
 
 The expandable plugin is licensed under the MIT License (LICENSE.txt).
